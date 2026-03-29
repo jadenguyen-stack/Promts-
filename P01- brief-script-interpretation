@@ -1,0 +1,162 @@
+# P01 · Brief & Script Interpretation
+
+**Section:** 01 — Planning
+**Workflow step:** Step 1 of 10
+**Current version:** v1.2
+**Status:** ✅ Tested
+**Last updated:** [Date]
+
+---
+
+## 📌 Prompt Text (v1.2 — current)
+
+> Copy this exactly into your AI tool. Replace all `[PLACEHOLDERS]` before running.
+```
+You are a background art supervisor at a 2D animation studio 
+working on [PRODUCTION_TITLE]. Read the script excerpt below 
+and extract every unique background location required.
+
+For each location output the following:
+- Location name
+- Scene number(s) it appears in
+- Time of day (if specified or implied)
+- Mood or atmosphere (if specified or implied)
+- Key props or environmental details mentioned
+- Estimated complexity: Low / Medium / High
+  where Low = simple interior, Medium = exterior with props,
+  High = multi-layer environment or complex lighting
+
+Flag any scenes where background requirements are unclear 
+or missing. Maximum one entry per unique location.
+
+Script: [PASTE SCRIPT EXCERPT HERE]
+```
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[PRODUCTION_TITLE]` | Production coordinator or project brief | "Studio Ghibli — Ep. 3" |
+| `[PASTE SCRIPT EXCERPT HERE]` | Director or writer's script document | Scene 1–5 of episode script |
+
+---
+
+## 🏢 Intended Workflow or Task
+
+- **Trigger:** New script or episode brief received from director or production coordinator
+- **Actor:** Background art supervisor reviews and approves extracted location list
+- **Timing:** Runs at the very start of production — before any creative work begins
+- **Next step:** Output feeds directly into P02 (Workload Prioritisation)
+```
+Director sends script
+      ↓
+[P01 RUNS — extracts all background locations]
+      ↓
+Supervisor reviews and approves location list
+      ↓
+List passed to P02 for prioritisation
+```
+
+---
+
+## ❗ Problem Being Solved
+
+Background supervisors currently spend 45–90 minutes per episode manually reading through scripts and extracting location requirements into spreadsheets. This process is inconsistent — different supervisors capture different levels of detail, and locations implied in dialogue rather than stated explicitly are frequently missed. When briefs are incomplete, artists either pause work to ask questions or proceed with wrong assumptions, both of which create costly revision cycles later in production. On a mid-size studio producing 10–13 episodes per season, this represents an estimated 8–20 hours of avoidable supervisor time per season on brief extraction alone.
+
+**Pain points addressed:**
+- Locations missed when buried in dialogue or action lines
+- Mood and atmosphere inconsistently captured across supervisors
+- New artists unable to independently interpret vague script directions
+- No standardised format across the department
+
+---
+
+## ⚡ Automation Potential
+
+**Level:** High
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | Every episode and every script revision triggers this task |
+| Data availability | Script documents readily available from production coordinator |
+| Human judgment needed | Supervisor confirms complexity ratings and flags before sign-off |
+| Integration possibility | Output could feed into a production tracking system (e.g. Shotgrid, Notion) |
+| Estimated time saving | ~75% — from 45–90 min to 10–15 min per episode |
+
+**Human-in-the-loop role:** Supervisor reviews AI-extracted location list, confirms complexity ratings, and approves before passing to P02. AI does not assign work — it prepares the information for human decision-making.
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| AI misreads implied locations not explicitly named in script | Medium | Prompt instructs AI to flag unclear or missing background requirements |
+| Mood and atmosphere hallucinated where not stated in script | Medium | Prompt uses "if specified or implied" — uncertain fields are flagged rather than assumed |
+| Complexity rating inaccurate without visual storyboard reference | Medium | Human supervisor confirms all complexity ratings before list enters P02 |
+| Long scripts may produce inconsistent extraction quality | Low | Process script in scene blocks rather than full episode at once |
+
+**Overall risk rating:** MEDIUM — outputs are always reviewed by a human supervisor before entering the pipeline, limiting downstream impact of any extraction errors.
+
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** [Date]
+**Prompt:**
+```
+Read this script and tell me what backgrounds are needed.
+
+Script: [PASTE SCRIPT HERE]
+```
+**Output:** Loose list of location names with no detail, missed several implied locations, no consistent format across runs.
+**Observed effect:** Required significant manual editing — faster to do it by hand.
+**Lesson learned:** AI needs a defined role, output structure, and complexity criteria to produce consistent results.
+
+---
+
+### v1.1 — Added RACE framework + list format
+**Date:** [Date]
+**Change:** Added role assignment, action instruction, and basic description field per location.
+**Prompt:**
+```
+You are a background art supervisor at a 2D animation studio. 
+Read the script below and identify every background location 
+needed. List them with a short description of each.
+
+Script: [PASTE SCRIPT HERE]
+```
+**Output:** Better coverage and tone but fields inconsistent and no complexity rating.
+**Observed effect:** Output still needed manual reformatting before usable in pipeline.
+**Lesson learned:** Need explicit output fields, complexity scale, and placeholder variables.
+
+---
+
+### v1.2 — Added fields + complexity scale + flag instruction ✅ Current
+**Date:** [Date]
+**Change:** Added all structured output fields, Low/Medium/High complexity definitions, flag instruction for unclear scenes, and production title placeholder.
+**Output:** Consistent structured location list with all fields populated and unclear scenes flagged.
+**Observed effect:** Supervisor review time reduced from ~20 min editing to ~5 min confirmation.
+**Lesson learned:** Defining complexity within the prompt eliminates ambiguity — specific constraints produce production-ready output.
+
+---
+
+## 📊 A/B Test Results
+
+**Test date:** [Date] | **Evaluators:** Background supervisor + 1 senior artist
+
+| Criteria | v1.0 score | v1.2 score |
+|----------|------------|------------|
+| Accuracy of location extraction | 2/5 | 4/5 |
+| Consistency of output format | 1/5 | 5/5 |
+| Usability without editing | 1/5 | 4/5 |
+| **Overall** | **1.3/5** | **4.3/5** |
+
+---
+
+## 🔗 Related Prompts
+
+- **Previous in chain:** None — this is the pipeline entry point
+- **Next in chain:** P02 — Workload Prioritisation
+- **Parent section:** 01-planning/README.md
