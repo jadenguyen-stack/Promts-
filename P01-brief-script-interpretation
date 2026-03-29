@@ -75,15 +75,13 @@ In a mid-sized studio producing 20 episodes per season with an average of 12 uni
 
 | Dimension | Assessment |
 |-----------|------------|
-| Repetitiveness | Very high — same structure every time |
-| Data availability | All placeholders exist in HRIS |
-| Human judgment needed | Low — tone review only |
-| Integration possibility | Could trigger automatically from HRIS workflow |
-| Estimated time saving | ~80% (45 min → ~8 min including review) |
+| Repetitiveness | Triggered for every new episode script and every revision |
+| Data availability | Script readily available from production coordinator |
+| Human judgment needed | Supervisor confirms complexity ratings — especially for visually complex scenes |
+| Integration possibility | Output can feed directly into Shotgrid or Notion production tracker |
+| Estimated time saving | ~75% — from 45–90 min to 10–15 min per episode |
 
-**Human-in-the-loop role:** HR coordinator reads output, checks placeholders resolved correctly, and clicks send. No rewriting expected at v1.2.
-
-**Scaling note:** A chain of 10 stores hiring 4/month = 480 emails/year. Automation saves approximately **324 hours annually** at current manual rate.
+**Human-in-the-loop role:** Supervisor reviews extracted list, confirms complexity ratings and approves before passing to P02.
 
 ---
 
@@ -91,42 +89,41 @@ In a mid-sized studio producing 20 episodes per season with an average of 12 uni
 
 | Risk | Level | Mitigation |
 |------|-------|------------|
-| Hallucination if placeholders are empty or malformed | Medium | Validate all fields in HRIS before prompt runs. System should reject prompt if any placeholder is null. |
-| Generic or impersonal output despite personalisation | Low | v1.2 testing shows this is rare; coordinator review catches it |
-| Confidential data included accidentally | Low | Prompt explicitly excludes salary/contract terms; HRIS integration should not pass financial fields |
-| Tone mismatch for unusual roles (e.g. senior management hire) | Low | This prompt is scoped to frontline retail roles only. Senior hires use a separate template. |
+| AI misses implied locations  | Medium | Prompt instructs AI to flag unclear or underdescribed scenes |
+| Mood hallucinated where not stated | Medium | Prompt uses "if specified or implied" — uncertain fields flagged not assumed |
+| Complexity rated incorrectly without storyboard reference  | Medium | Supervisor confirms all complexity ratings before list enters P02 |
+| Long scripts processed in one pass may produce inconsistent extraction | Low | Process in scene blocks (e.g. 10 scenes at a time) not full episode at once |
 
-**Overall risk rating: LOW** — suitable for near-full automation with lightweight human review.
+**Overall risk rating: MEDIUM** — all outputs reviewed by supervisor before entering pipeline.
 
 ---
 
 ## 🔄 Version History
 
 ### v1.0 — Initial draft
-**Date:** 5 March 2025  
-**Prompt:** `Write a welcome email for a new staff member starting at our store.`  
-**Output:** Generic, no structure, missing key contacts, 380 words (too long)  
-**Observed effect:** Required complete rewrite by coordinator — no time saving  
-**Lesson learned:** Need role assignment, structure, word limit, and explicit field list
+**Date:** 29 March 2026 
+**Prompt:** Read this script . list all the needed backgrounds  
+Script: [PASTE SCRIPT HERE]
+**Output:** Only list, missing moods , not all backgrounds
+**Observed effect:** Required full manual redo — faster to extract by hand.  
+**Lesson learned:** Need role assignment, structure, explicit output fields to preduce usable results.
 
 ---
 
-### v1.1 — Added RACE framework
-**Date:** 10 March 2025  
-**Change:** Added "You are an HR onboarding specialist" role + structured section list  
-**Output:** Much better structure; coordinator only edited tone. But still no word limit — output sometimes ran to 300+ words.  
-**Observed effect:** Edit time reduced from 45 min to ~14 min  
-**Lesson learned:** Word limits and exclusions are essential for production-ready output
+### v1.1 — Added RACE framework 
+**Date:** 29 March 2026
+**Change:** Added "You are a background art supervisor at a 2D animation studio" role + structured section list  
+**Output:** Much better result, but not specific about scene such as exterior/ interior / foyer.  
+**Lesson learned:** Need explicit about complexity scale and output fields.
 
 ---
 
 ### v1.2 — Added constraints and exclusions ✅ Current
-**Date:** 15 March 2025  
-**Change:** Added 220-word limit; added explicit "do not include" clause for salary/contract  
-**Output:** Consistent, send-ready in 4 of 5 test runs. Average coordinator edit time: 2 min.  
-**Observed effect:** Output rated "excellent" or "good" by 3 HR coordinators in blind review  
-**Lesson learned:** Explicit exclusion clauses prevent the most common errors without needing post-editing
-
+**Date:** 29 March 2026
+**Change:** Added range complexity, structured fields, flag instruction and mood, atmostphere. 
+**Output:** Consistent, all the backgrounds are listed and categorized and shownunclear scenes.
+**Observed effect:** Supervisor review time reduced 4 times. 
+**Lesson learned:** Using explicity reduce ambiguity and produce ready-to-use outputs.
 ---
 
 ## 📊 A/B Test Results
@@ -145,6 +142,5 @@ In a mid-sized studio producing 20 episodes per season with an average of 12 uni
 
 ## 🔗 Related Prompts
 
-- **Next in chain:** [P02 — Induction schedule](P02-induction-schedule.md)
-- **Also uses:** [P03 — Role briefing](P03-role-briefing.md) (handed to hire on Day 1)
-- **Parent section:** [01-onboarding/README.md](README.md)
+- **Next in chain:** P02-workload-prioritisation and P02-workload-prioritisation.md
+- **Parent section:** 01-planning/README.md](README.md)
