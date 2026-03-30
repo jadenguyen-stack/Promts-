@@ -1,6 +1,6 @@
 # P04 · Layout & Composition Brief
 
-**Section:** 02 — Operations  
+**Section:** 02 — Pre-production
 **Workflow step:** Step 4 of 10 (feeds into colour & lighting spec → style check)
 **Current version:** v1.1  
 **Status:** ✅ Tested  
@@ -45,18 +45,18 @@ Organise by scene with clearly labelled sections.
 
 | Placeholder | Source | Example |
 |-------------|--------|---------|
-| `[STAFF_NOTES]` | Staff member's handwritten or verbal account | "Customer slipped near freezer aisle at 2pm. Wet floor sign was not present. Staff member called first aid..." |
-
+| `[LOCATION_BRIEF]` | Single location from P02 approved output | "Street Market — Scene 1, Day, High complexity" |
+| `[P03_OUTPUT]` | Approved reference collection from P03 | Full P03 output for the same location |
 ---
 
 ## 🏢 Intended Workflow or Task
 
-Step 1 of a 3-prompt incident management chain.
+Step 4 in pipeline — supports layout design before production
 
 - **Trigger:** Artist's reference board approved by art director
 - **Actor:** Background artists
 - **Timing:** Before detailed painting/production
-- **Next step:** Feeds into P06 (style matching)
+- **Next step:** Feeds into P05 (colorkey , lighting and mood )
 
 ```
 P03 reference collection approved by art director
