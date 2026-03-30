@@ -1,0 +1,294 @@
+# P07 · Missing Detail Identifier
+
+**Section:** 03 — Production
+**Workflow step:** Step 7 of 10 (feeds into asset documentation → quality review)
+**Current version:** v1.1  
+**Status:** ✅ Tested  
+**Last updated:** 31 March 2026
+
+---
+
+## 📌 Prompt Text (v1.1 — current)
+
+```
+You are a senior background art reviewer in a 2D animation studio.
+
+Using ONLY the information provided below, identify any missing or incomplete background details that are required for production.
+
+Do not infer, assume, or introduce new elements beyond what is explicitly stated or clearly implied.
+
+Inputs:
+
+1. Scene breakdown:
+[SCENE_DATA]
+
+2. Layout description:
+[LAYOUT_DATA]
+
+3. Style guide (if available):
+[STYLE_GUIDE]
+
+Identify gaps across the following areas:
+
+1. Environmental completeness  
+   (missing structures, background layers, spatial depth)
+
+2. Object / prop completeness  
+   (missing items required by scene context)
+
+3. Lighting / atmosphere definition  
+   (unclear or insufficient lighting/mood details)
+
+4. Spatial clarity  
+   (unclear foreground, midground, background relationships)
+
+5. Production readiness  
+   (anything that would block artists from proceeding)
+
+Output the following:
+
+1. Missing or unclear elements  
+   (list only gaps or incomplete areas)
+
+2. Impact on production  
+   (how these gaps may affect workflow or quality)
+
+3. Recommended follow-up actions  
+   (what needs clarification or additional input)
+
+Constraints:
+- Use ONLY provided inputs  
+- Do NOT invent new scene elements  
+- If no issues are found, write:  
+  “No significant gaps identified — ready for production”  
+- If information is insufficient, write:  
+  “Insufficient data — follow-up required”  
+- Keep output concise and production-focused  
+
+Output format:
+Structured bullet points under each section.
+```
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[STYLE_GUIDE_RULES]` | Production style guide document | "Hergé ligne claire rules — see example below" |
+| `[BACKGROUND_DESCRIPTION]` | Artist's written description of completed background | "Street Market background — flat cobblestone fill, cream and rust awnings, soft grey shadows, no texture detail on walls..." |
+---
+
+## 🏢 Intended Workflow or Task
+
+Step 1 of the production chain — runs once per background after the artist submits their completed colour key for review
+
+- **Trigger:** Style check completed (P06
+- **Actor:** Senior artist / art director
+- **Timing:** Before asset documentation and production
+- **Next step:** No issues or LOW only → feeds into P08 (Asset Documentation). HIGH or MEDIUM issues → returned to artist for correction.
+
+```
+P06 style check returns PASS or CONDITIONAL PASS
+      ↓
+[P07 RUNS — identifies missing or incomplete details]
+      ↓
+Supervisor reviews missing detail report
+      ↓
+HIGH / MEDIUM issues → returned to artist for correction
+LOW only or no issues → feeds into P08 asset documentation
+```
+
+---
+
+## ❗ Problem Being Solved
+Cut down on:
+
+- time-consuming (20–40 minutes per scene) and manually determining shot type, camera angle and compositional approach   
+- inconsistent between artists
+- heavily dependent on individual experience
+
+**Pain points addressed:**
+- incomplete scene specifications
+- unclear design instructions
+- late discovery of missing elements
+- Layout brief requirements not carried through to finished background 
+
+## ⚡ Automation Potential
+
+**Level: Medium-High**
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | Triggered once per location per episode |
+| Data availability | Requires location brief, layout brief, style check and background description as inputs |
+| Human judgment needed | High — Supervisor confirms HIGH priority issues and makes return/proceed decision |
+| Integration possibility | Output can be attached directly to location entry in Shotgrid or Notion |
+| Estimated time saving | ~70% — from 30–45 min to 10 min per background |
+
+**Human-in-the-loop role:** Senior artist validates and decides which gaps require action
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| AI flags details as missing that are present in background but not in written description | **High** | Self-critique step built into prompt instructs model to review its own findings before finalising — reduces false positives |
+| misses details that require visual inspection of actual background file | **High** | Supervisor conducts visual review of HIGH priority items against physical file before returning to artist |
+| Incomplete briefs passed as inputs produce incomplete missing detail check | Medium | Prompt grounding constraint limits check to briefs provided — incomplete inputs flagged in output |
+| Junior artist proceeds without art director review | **High** | Prompt grounding constraint limits check to briefs provided — incomplete inputs flagged in output |
+
+**Overall risk rating: HIGH** — Supervisor visual confirmation of all HIGH priority issues is non-negotiable before background is returned or approved.
+
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** 30 March 2026 
+**Prompt:** Find what is missing from this background. Background: [PASTE DESCRIPTION HERE]
+**Output:** Output vague and unuseable  
+**Observed effect:** Full redraw required
+**Lesson learned:**  Need section structure and composition terminology constraints.
+
+### v1.1 — Grounding constraint + fallback added ✅ Current
+**Date:** 30 March 2026 
+**Change:**Added layout artist role, seven required sections, shot type and composition rule terminology
+**Output:** Model now leaves gaps explicit rather than filling them. Managers know exactly what requires follow-up.  
+**Observed effect:** 0 fabricated claims across 5 test runs. Manager review time down to ~10 min.  
+**Lesson learned:** Grounding constraint essential 
+
+## 🔗 Related Prompts
+- **Previous in chain**: P03 — Reference Collection
+- **Next in chain:** P05 — Colourkey, Lighting & Mood Spec
+- **Parent section:** [02-operations/README.md](README.md)
+- **Library index:** [README.md](../README.md)
+
+**Section:** 03 — Production
+**Workflow step:**  Step 6 of 10 (feeds into missing detail identifier → asset documentation)
+**Current version:** v1.1  
+**Status:** ✅ Tested  
+**Last updated:** 30 March 2026
+
+---
+
+## 📌 Prompt Text (v1.1 — current)
+
+```
+You are a sstyle consistency checker in a 2D animation studio working on The Adventures of Tintin.
+
+Using ONLY the style guide rules and background description provided below, check whether the background described conforms to the production's visual style.
+
+Do not introduce style rules that are not explicitly stated in the style guide provided.
+
+Style guide: [STYLE_GUIDE_RULES]
+Background description: [BACKGROUND_DESCRIPTION]
+
+For each style rule, output:
+- Rule name
+- Status: PASS / FAIL / UNABLE TO ASSESS
+- Justification: one sentence explaining the result
+
+Then output a summary:
+- Overall result: PASS / FAIL / CONDITIONAL PASS
+- Number of rules passed
+- Number of rules failed
+- Number unable to assess
+- Recommended action: APPROVE / REVISE / ESCALATE TO 
+  ART DIRECTOR
+
+If any style rule cannot be assessed from the background 
+description provided, mark as 
+"UNABLE TO ASSESS — visual review required."
+```
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[STYLE_GUIDE_RULES]` | Production style guide document | "Hergé ligne claire rules — see example below" |
+| `[BACKGROUND_DESCRIPTION]` | Artist's written description of completed background | "Street Market background — flat cobblestone fill, cream and rust awnings, soft grey shadows, no texture detail on walls..." |
+---
+
+## 🏢 Intended Workflow or Task
+
+Step 1 of the production chain — runs once per background after the artist submits their completed colour key for review
+
+- **Trigger:** Artist submits completed colour key background for style review
+- **Actor:** Background supervisor
+- **Timing:** Before background enters asset documentation
+- **Next step:** PASS or CONDITIONAL PASS feeds into P07 (Missing Detail Identifier). FAIL returned to artist for revision.
+
+```
+Artist submits completed colour key background
+      ↓
+[P06 RUNS — checks background against style guide rules]
+      ↓
+Supervisor reviews result
+      ↓
+PASS / CONDITIONAL PASS → feeds into P07
+FAIL → returned to artist for revision
+```
+
+---
+
+## ❗ Problem Being Solved
+Cut down on:
+
+- time-consuming (20–40 minutes per scene) and manually determining shot type, camera angle and compositional approach   
+- inconsistent between artists
+- heavily dependent on individual experience
+
+**Pain points addressed:**
+- Some missed violation reaching final quality check
+- Inconsistent review standards across different supervisors
+- Unfamiliar with the rules and violations
+- No structured record of which backgrounds passed or failed style check
+
+## ⚡ Automation Potential
+
+**Level: Medium-High**
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | Triggered once per location per episode |
+| Data availability | Requires both P02 location brief and P03 reference collection as input |
+| Human judgment needed | High — Art director reviews layout brief before artist begins sketching — compositional choices have creative implications |
+| Integration possibility | Output can be attached directly to location entry in Shotgrid or Notion |
+| Estimated time saving | ~40–60% — from 30–60 min to 10 min per location |
+
+**Human-in-the-loop role:** Artists refine composition and adjust creative decisions.
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| AI suggests compositional choices unsupported by brief or references | **High** | Grounding constraint: "Using ONLY the reference collection and location brief provided" |
+| Over-restricting creativity | Medium | Use as starting draft only |
+| Camera angle or shot type conflicts with storyboard or character blocking | **High** | Human refinement required |
+| Junior artist proceeds without art director review | **High** | Legal review required for any report involving injury, significant property damage, or potential litigation |
+
+**Overall risk rating: HIGH** — Supervisor visual confirmation of all HIGH priority issues is non-negotiable before background is returned or approved.
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** 31 March 2026 
+**Prompt:** Find what is missing from this background. Background: [PASTE DESCRIPTION HERE]
+**Output:** Short list of 2–3 surface observations with no priority, no category, no recommended action. Missed the missing display case and incorrect easel position entirely. 
+**Observed effect:** Background proceeded to asset documentation with 3 unresolved continuity issues — caught at final quality review, requiring full rework cycle
+**Lesson learned:**  Open-ended missing detail prompts produce surface observations not structured reviews. Need category, priority and cross-reference against original briefs.
+
+### v1.1 — Added RACE + category + priority + cross-reference inputs ✅ Current
+**Date:** 31 March 2026 
+**Change:**Added reviewer role, MISSING/INCOMPLETE/INCONSISTENT categories, HIGH/MEDIUM/LOW priority scale, location and layout briefs as required inputs.
+**Output:** Better coverage and priority logic but AI flagged 4 false positives — details present in background description but marked as missing on first pass.
+**Observed effect:** Supervisor spent more time disproving false positives than reviewing genuine issues — added review time rather than reducing it. 
+**Lesson learned:** Self-critique step essential to reduce false positives before output reaches supervisor.
+
+## 🔗 Related Prompts
+- **Previous in chain**:  P06 — Style Matching & Consistency Check
+- **Next in chain:** P08 — Asset Documentation
+- **Parent section:** [03-production/README.md](README.md)
