@@ -1,0 +1,135 @@
+# P04 · Layout & Composition Brief
+
+**Section:** 02 — Operations  
+**Workflow step:** Step 4 of 10 (feeds into colour & lighting spec → style check)
+**Current version:** v1.1  
+**Status:** ✅ Tested  
+**Last updated:** 30 March 2026
+
+---
+
+## 📌 Prompt Text (v1.1 — current)
+
+```
+You are a senior background layout artist in a 2D animation studio.
+
+Using ONLY the scene breakdown provided below, generate a structured layout and composition plan for background production.
+
+Do not infer, assume, or introduce elements that are not explicitly stated in the scene data.
+
+Scene breakdown:
+[SCENE_DATA]
+
+For each scene, produce:
+
+1. Foreground elements  
+2. Midground elements  
+3. Background elements  
+4. Spatial composition (scene depth and arrangement)  
+5. Camera angle / framing (wide, medium, close, perspective direction)  
+6. Focal point (primary visual attention area)  
+7. Movement guidance (if applicable — crowd, character flow, environmental motion)
+
+Constraints:
+- Use ONLY provided information  
+- Do NOT invent new objects or story elements  
+- If information is missing, write:  
+  “Insufficient data — follow-up required”  
+- Keep output concise and production-ready  
+
+Output format:
+Organise by scene with clearly labelled sections.
+```
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[STAFF_NOTES]` | Staff member's handwritten or verbal account | "Customer slipped near freezer aisle at 2pm. Wet floor sign was not present. Staff member called first aid..." |
+
+---
+
+## 🏢 Intended Workflow or Task
+
+Step 1 of a 3-prompt incident management chain.
+
+- **Trigger:** Artist's reference board approved by art director
+- **Actor:** Background artists
+- **Timing:** Before detailed painting/production
+- **Next step:** Feeds into P06 (style matching)
+
+```
+P03 reference collection approved by art director
+      ↓
+[P04 RUNS — generates layout and composition brief]
+      ↓
+Artist uses brief to produce rough composition sketch
+      ↓
+Sketch feeds into P05 colourkey and lighting generator
+```
+
+---
+
+## ❗ Problem Being Solved
+Cut down on:
+
+- time-consuming (20–40 minutes per scene) and manually determining shot type, camera angle and compositional approach   
+- inconsistent between artists
+- heavily dependent on individual experience
+
+**Pain points addressed:**
+- Slow layout ideation
+- Weak composition planning
+- Inconsistent visual storytelling
+- Layout conflicts with character blocking or camera direction
+
+## ⚡ Automation Potential
+
+**Level: Medium-High**
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | Triggered once per location per episode |
+| Data availability | Requires both P02 location brief and P03 reference collection as input |
+| Human judgment needed | High — Art director reviews layout brief before artist begins sketching — compositional choices have creative implications |
+| Integration possibility | Output can be attached directly to location entry in Shotgrid or Notion |
+| Estimated time saving | ~40–60% — from 30–60 min to 10 min per location |
+
+**Human-in-the-loop role:** Artists refine composition and adjust creative decisions.
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| AI suggests compositional choices unsupported by brief or references | **High** | Grounding constraint: "Using ONLY the reference collection and location brief provided" |
+| Over-restricting creativity | Medium | Use as starting draft only |
+| Camera angle or shot type conflicts with storyboard or character blocking | **High** | Human refinement required |
+| Junior artist proceeds without art director review | **High** | Legal review required for any report involving injury, significant property damage, or potential litigation |
+
+**Overall risk rating: HIGH** — always requires Art director review and verification. Do not automate submission.
+
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** 30 March 2026 
+**Prompt:** Generate a layout for this scene. Location: [PASTE LOCATION HERE]
+**Output:** Output vague and unuseable  
+**Observed effect:** Full redraw required
+**Lesson learned:**  Need section structure and composition terminology constraints.
+
+### v1.1 — Grounding constraint + fallback added ✅ Current
+**Date:** 30 March 2026 
+**Change:**Added layout artist role, seven required sections, shot type and composition rule terminology
+**Output:** Model now leaves gaps explicit rather than filling them. Managers know exactly what requires follow-up.  
+**Observed effect:** 0 fabricated claims across 5 test runs. Manager review time down to ~10 min.  
+**Lesson learned:** Grounding constraint essential 
+
+## 🔗 Related Prompts
+- **Previous in chain**: P03 — Reference Collection
+- **Next in chain:** P05 — Colourkey, Lighting & Mood Spec
+- **Parent section:** [02-operations/README.md](README.md)
+- **Library index:** [README.md](../README.md)
