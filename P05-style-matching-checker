@@ -1,0 +1,142 @@
+# P05 · Colour Key, Lighting & Mood Brief
+
+**Section:** 02 — Pre-production 
+**Workflow step:** Step 5 of 10 (feeds into style matching → production)
+**Current version:** v1.1  
+**Status:** ✅ Tested  
+**Last updated:** 30 March 2026
+
+---
+
+## 📌 Prompt Text (v1.1 — current)
+
+```
+You are a colour key artist at a 2D animation studio working on The Adventures of Tintin.
+
+Using ONLY the layout brief and location brief provided below, generate a structured colour key brief that will guide the background artist in applying colour, lighting and mood to their approved layout sketch.
+
+Do not suggest colour or lighting directions that are not supported by the briefs provided.
+
+Location brief: [LOCATION_BRIEF]
+Layout brief: [P04_OUTPUT]
+
+Required sections:
+1. Light source & direction
+   - Primary light source (sun / artificial / ambient)
+   - Direction (top-down / side / back-lit / diffused)
+   - Time of day confirmation
+
+2. Colour key zones
+   - Sky/background zone: base colour and mood
+   - Midground zone: dominant colour and tone
+   - Foreground zone: shadow and separation colour
+   - Accent colours: 2–3 colours that draw the eye
+
+3. Lighting mood
+   - Choose one: flat / soft ambient / golden hour / 
+     overcast / night — justify against brief
+   - Note any lighting that conflicts with ligne claire 
+     flat style constraints
+
+4. Shadow treatment
+   - Shadow presence: none / minimal / moderate
+   - Shadow edge: hard / soft — justify against 
+     ligne claire style constraints
+   - Shadow colour: specify, do not use black
+
+5. Mood & emotional tone
+   - One sentence: what should the audience feel 
+     when this background is on screen?
+   - Key colour temperature: warm / cool / neutral
+
+6. Colour consistency notes
+   - Flag any colour decisions that must be matched 
+     across other backgrounds in the same scene or 
+     time of day
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[LOCATION_BRIEF]` | Single location from P02 approved output | "Street Market — Scene 1, Day, High complexity, busy open-air European market"|
+| `[P04_OUTPUT]` | Approved layout brief from P04 | Full P04 layout brief for the same location |
+---
+
+## 🏢 Intended Workflow or Task 
+
+Step 3 of the pre-production chain — runs once per location after the P04 layout sketch is approved by the art director.
+
+- **Trigger:** Approved layout brief from Art director and rough compisition sketch
+- **Actor:** Background artists
+- **Timing:** Before final background painting begins
+- **Next step:** Feeds into P06 (style matching and consistency check)
+
+```
+P04 layout brief approved by art director
+      ↓
+[P05 RUNS — generates colour, lighting and mood spec]
+      ↓
+Artist applies colour key to approved layout sketch
+      ↓
+Colour key feeds into P06 style matching checker
+```
+
+---
+
+## ❗ Problem Being Solved
+
+Cut down on:
+- time-consuming (45-60 minutes per scene) and manually determining color palette, lighting mood and atmostplere from notes.
+- inconsistent between artists about color temparatures and shadow styles in sae scene or time of day in the scene.
+- heavily dependent on individual experience
+
+**Pain points addressed:**
+- Inconsistent colour temperature across backgrounds in the same scene
+- Varying shadow style and angle 
+- Inconsistent visual storytelling
+- Need color corrections in late production at compositing stage
+## ⚡ Automation Potential
+
+**Level: High**
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | Triggered once per location per episode |
+| Data availability | Requires both P02 location brief and P04 layout brief as input |
+| Human judgment needed | High — Colour supervisor reviews spec before artist applies colour key |
+| Integration possibility | Colour palette output can feed directly into shared swatch libraries in Photoshop or Milanote |
+| Estimated time saving | ~75% — from 45–60 min to 10-15 min per location |
+
+**Human-in-the-loop role:** Supervisor gives feedback and approval.
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| Inconsistance color palette suggestions with the previous approved background in that same episode | **High** | Colour supervisor cross-references spec against approved background library before sign-off |
+| Lighting mood conflicts with other backgrounds | **High** | Use as starting draft only | Prompt hardcodes, constraints and flat lighting as default |
+| Inconsistance color temperature| **High** | Human refinement required and use a master colour temperature reference per time of day across the episode|
+| Artist applies spec without supervisor review | **Medium** | colour supervisor sign-off mandatory before colour key begins |
+
+**Overall risk rating: HIGH** — always requires color supervisor review and verification. Do not automate submission.
+
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** 30 March 2026 
+**Prompt:** Generate acolor and mood for this background. Location: [PASTE LOCATION HERE]
+**Output:** Output vague and unuseable  
+**Observed effect:** Full redraw required
+**Lesson learned:**  Need section structure and composition terminology constraints.
+
+ 
+
+## 🔗 Related Prompts
+- **Previous in chain**: P04 — Layout & Composition Brief
+- **Next in chain:** P06 — Style Matching & Consistency Check
+- **Parent section:** [02-operations/README.md](README.md)
+- **Library index:** [README.md](../README.md)
