@@ -1,0 +1,42 @@
+# 📂 03 — Production
+
+**Business function:** Background Art Production — 2D Animation Studio
+**Trigger:** P05 colour key brief approved by art director — artist begins active background painting
+**Prompts in this section:** P06, P07, P08
+---
+
+## Section Purpose
+
+The production section supports background artists and supervisors during active painting by providing structured checks at three critical quality gates — style consistency, missing detail identification, and asset documentation. 
+Each prompt catches a different category of production error before it reaches the final review stage, reducing the volume and cost of late-stage rework. 
+Together these three prompts create an auditable production record for every background that passes through the pipeline
+
+
+## Chain Diagram 
+
+```
+Artist submits completed colour key background
+      ↓
+[P06 RUNS — checks background against style guide rules]
+      ↓
+PASS / CONDITIONAL PASS → continues
+FAIL → returned to artist for revision
+      ↓
+[P07 RUNS — identifies missing or incomplete details]
+      ↓
+HIGH / MEDIUM issues → returned to artist for correction
+LOW only or no issues → continues
+      ↓
+[P08 RUNS — generates structured asset documentation entry]
+      ↓
+Supervisor approves documentation → feeds into 04-review-handoff
+
+
+## Prompts
+
+| File | Prompt | Status |
+|------|--------|--------|
+| [P06-style-matching-checker.md] | [Style Matching & Consistency Check] | ✅ Tested |
+| [P07-missing-detail-identifier.md]| [Missing Detail Identifier] | ✅ Tested |
+| [P08-asset-documentation.md]| [Asset Documentation] | ✅ Tested |
+---.
