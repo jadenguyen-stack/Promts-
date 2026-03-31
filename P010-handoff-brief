@@ -1,0 +1,154 @@
+# P010 · Handoff Brief
+
+**Section:** 04 — Review & Handoff
+**Workflow step:**  Step 10 of 10 (final pipeline output — delivers background to receiving department)
+**Current version:** v1.1  
+**Status:** ✅ Tested  
+**Last updated:** 31 March 2026
+
+---
+
+## 📌 Prompt Text (v1.1 — current)
+
+```
+You are a background department coordinator at a 2D animation studio working on The Adventures of Tintin.
+
+Using ONLY the asset documentation entry and quality checklist review provided below, generate a formal handoff brief for the receiving department.
+
+Do not include information that is not explicitly stated in the asset documentation or quality checklist provided.
+
+Asset documentation: [P08_OUTPUT]
+Quality checklist: [P09_OUTPUT]
+Receiving department: [RECEIVING_DEPARTMENT]
+
+Generate the handoff brief in the following format:
+
+HANDOFF BRIEF
+─────────────────────────────────────────
+FROM: Background Department
+TO: [RECEIVING_DEPARTMENT]
+DATE: [DATE]
+PRODUCTION: The Adventures of Tintin
+EPISODE: [EPISODE NUMBER]
+─────────────────────────────────────────
+
+ASSETS BEING HANDED OFF:
+- Asset ID
+- Asset name
+- Scene(s)
+- File status at handoff
+
+WHAT THE RECEIVING DEPARTMENT NEEDS TO KNOW:
+- Continuity dependencies that affect this department
+- Character interaction zones relevant to this department
+- Any conditional pass items still requiring sign-off
+- Colour references required for compositing or lighting
+
+OUTSTANDING ISSUES:
+- List any unresolved items from P09 that the receiving 
+  department must be aware of
+- If no outstanding issues write 
+  "No outstanding issues — background cleared for handoff"
+
+NEXT STEPS FOR RECEIVING DEPARTMENT:
+- List 2–3 specific actions the receiving department 
+  must take upon receipt of this background
+
+SIGN-OFF REQUIRED FROM:
+- Background department supervisor
+- [RECEIVING_DEPARTMENT] lead
+- Production coordinator
+
+If any field cannot be completed from the documentation provided, write "Awaiting confirmation — [specify what is needed and from whom]."
+---
+
+**Placeholders to fill:**
+
+| Placeholder | Source | Example |
+|-------------|--------|---------|
+| `[DATE]` | Current date at time of handoff | "31 March 2026" |
+| `[EPISODE NUMBER]` | Production schedule | "Episode 01" |
+---
+
+## 🏢 Intended Workflow or Task
+
+Final step — runs once per background after P09 quality checklist returns PASS or CONDITIONAL PASS resolved
+
+- **Trigger:** Quality review completed (P09)
+- **Actor:** Production coordinator
+- **Timing:** Before final approval
+- **Next step:** Receiving department lead signs off and background enters compositing, animation or lighting pipeline
+```
+P09 quality checklist cleared
+      ↓
+[P10 RUNS — generates formal handoff brief]
+      ↓
+Coordinator distributes brief to receiving department lead
+      ↓
+Both departments sign off
+      ↓
+Background file transferred to receiving department
+```
+
+---
+
+## ❗ Problem Being Solved
+
+Without structured handoff:
+
+- Miscommunication between teams
+- Missing requirements
+- Delays and rework
+
+**Pain points addressed:**
+- Unclear instructions
+- Fragmented information
+- Inconsistent documentation
+
+## ⚡ Automation Potential
+
+**Level: Medium**
+
+| Dimension | Assessment |
+|-----------|------------|
+| Repetitiveness | **Very High**-Triggered once per location per episode |
+| Data availability | All inputs available directly from P08 and P09 pipeline outputs |
+| Human judgment needed | Coordinator confirms receiving department and date before distributing — both departments sign off before file transfer |
+| Integration possibility | Handoff brief output can be logged directly into Shotgrid handoff queue or distributed via production management platform |
+| Estimated time saving | ~80% — from 30–45 min to 5–10 min per background |
+
+**Human-in-the-loop role:** Production coordinator reviews and finalises before distribution.
+
+---
+
+## ⚠️ Risks and Limitations
+
+| Risk | Level | Mitigation |
+|------|-------|------------|
+| Missing critical information from earlier stages| **High** | Ensure P01–P09 completeness |
+| Over-reliance on AI summary | Medium | Human validation required |
+| Incomplete instructions | Medium | “Insufficient data” fallback |
+| Miscommunication risk if unchecked | **High** | Mandatory review step |
+
+**Overall risk rating: HIGH** — handoff brief errors have direct downstream consequences across compositing, animation and lighting.
+---
+
+## 🔄 Version History
+
+### v1.0 — Initial draft
+**Date:** 31 March 2026 
+**Prompt:** Summarise scene for handoff
+**Output:** Too vague , no structure , redo is a must 
+**Observed effect:** Compositing department began work without checking continuity dependencies 
+**Lesson learned:** Need structured format with mandatory fields for continuity, interaction zones and outstanding issues.
+
+### v1.1 — Added RACE + structured format + continuity fields ✅ Current
+**Date:** 31 March 2026 
+**Change:**  Added coordinator role, structured handoff format, continuity dependencies field, character interaction zones field, next steps section
+**Observed effect:** Better structure and coverage but no outstanding issues field
+**Lesson learned:** Outstanding issues field is the most critical addition
+
+
+## 🔗 Related Prompts
+- **Previous in chain**: P09 — Quality Checklist Review
+- **Parent section:** [04-review-handoff/README.md](README.md)
