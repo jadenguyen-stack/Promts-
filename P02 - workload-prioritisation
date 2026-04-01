@@ -1,172 +1,27 @@
 # P02 · Workload Prioritisation
-
-**Section:** 01 — Planning 
-**Workflow step:** Step 2 of 10  
-**Current version:** v1.0  
-**Status:** ✅ Tested
-**Last updated:** 29 MARCH 2026
-
 ---
 
-## 📌 Prompt Text (v1.0 — current)
+## 📌 Prompt Text
 
 ```
-You are a production coordinator in a 2D animation studio.
-
-Your task is to prioritise background production tasks based on scene requirements, deadlines, and complexity.
+You are a production coordinator in a 2D animation studio and prioritise background production based on scene requirements, deadlines, and complexity.
 
 Using the scene breakdown data below, analyse and rank scenes by priority.
-
-Evaluate each scene based on:
-- Deadline urgency
-- Complexity level (low / medium / high)
-- Resource intensity (crowd, effects, detail level)
-- Dependency (does it affect other scenes?)
-
-Output in structured format:
-
-For each scene:
-- Scene number:
-- Priority level (High / Medium / Low)
-- Reason for priority:
-- Suggested production order:
-- Estimated effort (Low / Medium / High)
-
-Constraints:
-- Base decisions only on provided data
-- Do not assume additional information
-- Keep explanations concise and production-focused
-
-Scene Data:
-Scene 1: Street market, daytime, urban, high crowd density, complex movement
-Scene 2: Apartment interior, moderate detail, object interaction
-Scene 3: Library, low lighting, storm effects, atmospheric
-Scene 6–7: Marlinspike Hall exterior, night, large-scale environment, high detail
-Scene 8: Interior mansion, low visibility, focused lighting
-
-Deadlines:
-- Scene 1: 2 days
-- Scene 2: 3 days
-- Scene 3: 4 days
-- Scene 6–7: 5 days
-- Scene 8: 4 days
-```
-
-**Placeholders to fill:**
-
-| Placeholder | Source | Example |
-|-------------|--------|---------|
-| `[PLACEHOLDER_1]` | [Where this data comes from] | [Example value] |
-| `[PLACEHOLDER_2]` | [Where this data comes from] | [Example value] |
-
----
-
-## 🏢 Intended Workflow or Task
-
-This prompt is used after P01 to organise production execution.
-
-- **Trigger:** Scene breakdown completed
-- **Actor:** Production manager / team lead
-- **Timing:** Before assigning tasks to artists
-- **Next step:** Guides task allocation and scheduling
-```
-The workflow 
-
-P01 output approved by supervisor
-      ↓
-[P02 RUNS — ranks all locations by priority]
-      ↓
-Department lead reviews and confirms ranking
-      ↓
-Work assigned to artists → feeds into P03
----
-
-## ❗ Problem Being Solved
-
-Studios often lack structured prioritisation, leading to inefficient workflows.
-There are delays delays in delivery timelines due to uneven workload distribution and dependencies from artists.
-
-**Pain points addressed:**
-- No data-driven prioritisation
-- Manual scheduling inefficiency
-- High-risk scenes not identified early
-
----
-
-## ⚡ Automation Potential
-
-**Level:** [Very High / High / Medium / Low]
-
-| Dimension | Assessment |
-|-----------|------------|
-| Repetitiveness | Medium, depends on the project  |
-| Data availability | High since delivered from P01 output |
-| Human judgment needed | Medium  |
-| Integration possibility | High |
-| Estimated time saving | ~50–60% — from 60–120 min to 10 min per production week |
-
-**Human-in-the-loop role:** Producer validates priorities based on real constraints (team size, revisions, deadlines).
-
----
-
-## ⚠️ Risks and Limitations
-
-> Do not skip this section. Examiners look for genuine critical thinking here.  
-> Identify the *specific* risk, its *business impact*, and your *mitigation*.
-
-| Risk | Level | Mitigation |
-|------|-------|------------|
-| AI misjudges importance without full production context | Medium | Human validation required |
-| Over-reliance on complexity metrics | Medium | Combine with real scheduling |
-| Missing hidden dependencies | Medium | Add dependency input if needed |
-
-**Overall risk rating:** MEDIUM — safe but requires human oversight
 
 ---
 
 ## 🔄 Version History
 
 ### v1.0 — Initial draft
-**Date:** 30 March 2026
-**Prompt:** rank the scene by important level  
-**Output:** Output too vague
-**Observed effect:** [What happened when you used it? What did you have to fix manually?]  
+**Prompt:** rank the scene by important level   
 **Lesson learned:** Should provide more explicit info and categories 
 ---
 
-### v1.1 — [Short description of change]
-**Date:** [Date]  
-**Change:** [What specifically did you add, remove, or reword?]  
-**Output:** [How did the output change?]  
-**Observed effect:** [Did it improve? By how much?]  w
-**Lesson learned:** [What will you carry forward?]
-
----
-
-### v1.2 — [Short description of change] ✅ Current  
-**Date:** [Date]  
-**Change:** [Final refinements]  
-**Output:** [Final output quality]  
-**Observed effect:** [Measurable improvement — time, quality score, error rate]  
-**Lesson learned:** [Key insight from this iteration]
-
----
-
-## 📊 A/B Test Results (if applicable)
-
-**Test date:** [Date] | **Evaluators:** [Who assessed the outputs?]
-
-| Criteria | v1.0 score | v1.X score |
-|----------|------------|------------|
-| [Criteria 1 — e.g. Accuracy] | X/5 | X/5 |
-| [Criteria 2 — e.g. Relevance] | X/5 | X/5 |
-| [Criteria 3 — e.g. Usability] | X/5 | X/5 |
-| **Overall** | **X/5** | **X/5** |
+### v1.2 —  Added constrains 
+**Change:** Added table structure with columns
+**Lesson learned:** Explicit constraints prevent false confidence
 
 ---
 
 ## 🔗 Related Prompts
-
-- **Previous in chain:** [Link to previous prompt if chained]
-- **Next in chain:** [Link to next prompt if chained]
-- **Parent section:** [Link to section README]
+[P03-reference-collection.md]
