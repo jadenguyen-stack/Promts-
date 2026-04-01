@@ -1,27 +1,13 @@
 # P02 · Workload Prioritisation
 ---
 
-## 📌 Prompt Text
-
-```
-You are a production coordinator in a 2D animation studio and prioritise background production based on scene requirements, deadlines, and complexity.
-
-Using the scene breakdown data below, analyse and rank scenes by priority.
-
----
-
-## 🔄 Version History
+## 📌 Prompt Text and  History
 
 ### v1.0 — Initial draft
 **Prompt:** rank the scene by important level   
 **Lesson learned:** Should provide more explicit info and categories 
----
 
 ### v1.2 —  Added constrains 
 **Change:** Added table structure with columns
 **Lesson learned:** Explicit constraints prevent false confidence
 
----
-
-## 🔗 Related Prompts
-[P03-reference-collection.md]
