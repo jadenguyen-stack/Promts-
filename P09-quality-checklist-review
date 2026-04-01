@@ -1,135 +1,27 @@
 # P09 ·  Quality Checklist Review
 
-**Section:** 04 — Review & Handoff
-**Workflow step:**  Step 9 of 10 (feeds into handoff brief → department delivery)
-**Current version:** v1.1  
-**Status:** ✅ Tested  
-**Last updated:** 31 March 2026
 
 ---
 
-## 📌 Prompt Text (v1.1 — current)
+## 📌 Prompt Text 
 
 ```
 You are a production asset manager at a 2D animation studio working on The Adventures of Tintin.
 
-Using ONLY the information provided in the briefs and background description below, generate a complete asset documentation entry for this background.
+Using given description information, generate a complete asset documentation entry for this background.
 
-Do not add information that is not explicitly stated in the briefs or background description provided.
 
-Location brief: [LOCATION_BRIEF]
-Layout brief: [P04_OUTPUT]
-Colour key brief: [P05_OUTPUT]
-Background description: [BACKGROUND_DESCRIPTION]
-
-Generate the asset documentation entry in the following structured format:
-
-ASSET ID: [AUTO — assign using format BG-[EPISODE]-[SCENE]-[LOCATION CODE]]
-ASSET NAME: [Full location name]
-EPISODE: [Episode number]
-SCENE(S): [Scene numbers this background appears in]
-CATEGORY: [Interior / Exterior / Transitional]
-TIME OF DAY: [Day / Night / Evening / Dawn]
-COMPLEXITY: [Low / Medium / High]
-DIMENSIONS: [To be confirmed by technical director]
-COLOUR KEY REFERENCE: [Primary palette — list hex codes from P05]
-STYLE VERSION: [Ligne claire v1 — or note any approved deviations]
-PROPS INCLUDED: [List all props present in background]
-PROPS EXCLUDED: [List any props referenced in brief but not included]
-CHARACTER INTERACTION ZONES: [Describe areas where characters will be placed]
-CONTINUITY DEPENDENCIES: [List any other backgrounds this must match]
-FILE STATUS: [DRAFT / APPROVED / REVISION REQUIRED]
-APPROVED BY: [To be completed by supervisor]
-DATE APPROVED: [To be completed by supervisor]
-NOTES: [Any flagged issues from P06 or P07 still outstanding]
-
-If any field cannot be completed from the information provided, write 
-"Awaiting confirmation — [specify what is needed and from whom]."
-
-**Placeholders to fill:**
-
-| Placeholder | Source | Example |
-|-------------|--------|---------|
-| `[STYLE_GUIDE_RULES]` | Production style guide document | "Hergé ligne claire rules — see example below" |
-| `[BACKGROUND_DESCRIPTION]` | Artist's final background description after P07 corrections | Updated Street Market description post-revision |
----
-
-## 🏢 Intended Workflow or Task
-
-Step 1 of the review and handoff stage — runs once per background after P08 asset documentation is completed and approved.
-
-- **Trigger:** Asset documentation completed (P08)
-- **Actor:** QA reviewer / art director
-- **Timing:** Before final approval
-- **Next step:** Feeds into P10 (handoff preparation)
 ```
-## Production chain:
-
-P08 Asset Documentation → P09 Quality Review → Approval → Handoff (P10)
-```
-
----
-
-## ❗ Problem Being 
-
-Without structured quality checks:
-
-- errors are discovered late
-- rework increases
-- delivery delays occur
-
-**Pain points addressed:**
-- Inconsistent review standards
-- Subjective approval decisions
-- Lack of final validation
-
-## ⚡ Automation Potential
-
-**Level: Medium**
-
-| Dimension | Assessment |
-|-----------|------------|
-| Repetitiveness | Triggered once per location per episode |
-| Data availability | All inputs available from previous pipeline prompts P02–P08 |
-| Human judgment needed | Supervisor resolves FAIL and UNABLE TO ASSESS items before final clearance |
-| Integration possibility | PASS/FAIL output can feed directly into Shotgrid review status and handoff queue |
-| Estimated time saving | ~70% — from 30–45 min to 10 min per background |
-
-**Human-in-the-loop role:** Final approval must remain with art director.
-
----
-
-## ⚠️ Risks and Limitations
-
-| Risk | Level | Mitigation |
-|------|-------|------------|
-| Marks checklist items PASS based on documentation alone without physical file review | **High** | UNABLE TO ASSESS status built into output for all items requiring visual or physical file confirmation |
-| Supervisor clears background for handoff without resolving UNABLE TO ASSESS items | **High** | Governance policy: CONDITIONAL PASS cannot be upgraded to PASS without physical file review sign-off on all UNABLE TO ASSESS items |
-| Incomplete pipeline inputs produce incomplete quality review | **High** | Prompt grounding constraint limits review to provided inputs |
-| Junior artist proceeds without art director review | **High** | Prompt grounding constraint limits review to provided inputs — missing inputs flagged as UNABLE TO ASSESS rather than assumed |
-
-**Overall risk rating: HIGH** — Supervisor resolution of all FAIL and UNABLE TO ASSESS items through physical review is non-negotiable before background is cleared for handoff
-
----
-
 ## 🔄 Version History
 
-### v1.0 — Initial draft
-**Date:** 31 March 2026 
+### v1.0 
 **Prompt:** Review this background for quality before handoff. And insert the file 
-**Output:** No checklist, no category breakdown, no pass/fail per item. Missed unresolved dimensions field entirely
-**Observed effect:** Background cleared for handoff with unresolved technical director confirmation
 **Lesson learned:** Need itemised checklist with pass/fail per item and category breakdown.
 
-### v1.1 — Added RACE + itemised checklist + pass/fail per item ✅ Current
-**Date:** 31 March 2026 
+### v1.1 
 **Change:**  Added quality control reviewer role, 10 checklist items across 5 categories, PASS/FAIL/UNABLE TO ASSESS status per item
-**Output:** Improved clarity
-**Observed effect:**Faster review decisions . Reduced missed issues. More consistent quality control
 **Lesson learned:** Checklist-based prompts improve reliability in QA tasks
 
-
+```
 ## 🔗 Related Prompts
-- **Previous in chain**: [P08 — Asset Documentation Generator]
-- **Next in chain:** [P10 — Handoff Brief Generator]
-- **Parent section:** [04-review-handoff/README.md](README.md)
+[P010-handoff-brief.md]
