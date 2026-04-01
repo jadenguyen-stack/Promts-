@@ -3,13 +3,13 @@
 > **Assessment 1 | Generative AI for Business**  
 > Student: [JADE NGUYEN] | Business Field: [ BACKGROUND ARTIST OPTIMIZATION ]  
 > Model tested on: [Claude Sonnet 4, GPT-4o, Gemini ]  
-> Last updated: [Date]
+> Last updated: [1 April 2026]
 
 ---
 
 ## What This Library Does
 
-This prompt library supports workflow automation in 2D Background in a Midlevel animation studio. It contains 10 documented, tested, and iterated prompts organised by the business function they support.
+This prompt library supports workflow automation in 2D Background in DeeDee animation studio. It contains 10 documented, tested, and iterated prompts organised by the business function they support.
 
 Each prompt entry follows the same structure:
 - The exact prompt text (with placeholders)
@@ -97,9 +97,8 @@ P02 (Workload Prioritisation)→ P10 (Handoff Brief)
 
 | Strategy | Prompts | Why chosen |
 |----------|---------|------------|
-| RACE framework (Role–Action–Context–Evaluation) | P01, P03, P05, P10 | Consistent structure; comparable outputs for A/B testing |
+| RACE framework (Role–Action–Context–Evaluation) | P01, P03, P05, P10 | Consistent structure |
 | Grounding constraint ("using only...") | P06, P09 | Prevents hallucination against style guide |
-| Structured output format | P06 | Machine-readable for CRM/API integration |
 | Style constraints | P04, P05, P06 | Maintain visual consistency |
 | Self-critique step | P07, P09 | Model reviews its own output for gaps |
 | Word/format limits | All | Ensures production-ready output without heavy editing |
@@ -113,16 +112,12 @@ All prompt versions are saved in this repository. See individual prompt files fo
 
 | Prompt | Versions | Key improvement |
 |--------|----------|-----------------|
-| P01 | v1.0 → v1.2 | Added RACE role + word limit; edit time 14 min → 2 min |
-| P04 | v1.0 → v1.1 | Grounding constraint added after v1.0 hallucinated causes |
-| P06 | v1.0 → v1.2 | Constrained category list added; JSON output enforced |
+| P01 | v1.0 → v1.1 | Added RACE role + word limit; edit time 14 min → 2 min |
+| P06 | v1.0 → v1.2 | Grounding constraint added after v1.0 hallucinated causes |
+| P010 | v1.0 → v1.1 | Constrained category list added|
 
 ---
 
 ## 📖 References
 
-- Anthropic (2025). *Prompt Engineering Overview.* docs.claude.ai
-- Kartaca (2026). *Standardizing Enterprise Intelligence with a Corporate Prompt Library.*
-- MIT Sloan (2025). *Prompt Engineering is So 2024 — Try These Prompt Templates Instead.*
-- Microsoft (2025). *Get Started with Prompt Library — Copilot Studio.*
-- VE3 Global (2025). *10 Key Elements of a Prompt Library for Enterprise Tasks.*
+- Adventure of TinTin. *scirpt for reference and example for the sturucture can be clear.* 
