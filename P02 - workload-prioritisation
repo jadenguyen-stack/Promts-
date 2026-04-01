@@ -3,11 +3,11 @@
 
 ## 📌 Prompt Text and  History
 
-### v1.0 — Initial draft
+### v1.0 
 **Prompt:** rank the scene by important level   
 **Lesson learned:** Should provide more explicit info and categories 
 
-### v1.2 —  Added constrains 
+### v1.2
 **Change:** Added table structure with columns
 **Lesson learned:** Explicit constraints prevent false confidence
 
