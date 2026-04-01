@@ -2,18 +2,8 @@
 
 ---
 
-## 📌 Prompt Text 
+## 📌 Prompt Text and history
 
-```
-You are a background department coordinator at a 2D animation studio working on The Adventures of Tintin.
-
-Using asset and information provided , generate a formal handoff brief for the receiving department.
-
----
-
-## 🔄 Version History
-
-### v1.0 
 **Prompt:** Summarise scene for handoff
 **Lesson learned:** Need structured format with mandatory fields for continuity
 
