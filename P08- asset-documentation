@@ -1,138 +1,25 @@
 # P08 ·   Asset Documentation
 
-**Section:** 03 — Production
-**Workflow step:**  Step 8 of 10 (feeds into quality review → handoff)
-**Current version:** v1.1  
-**Status:** ✅ Tested  
-**Last updated:** 1 April 2026
 
 ---
 
-## 📌 Prompt Text (v1.1 — current)
-
+## 📌 Prompt Text 
 ```
 You are a production asset manager at DeeDee animation studio working on The Adventures of Tintin.
 
-Using ONLY the information provided in the briefs and background description below, generate a complete asset documentation entry for this background.
-
-Do not add information that is not explicitly stated in the briefs or background description provided.
-
-Location brief: [LOCATION_BRIEF]
-Layout brief: [P04_OUTPUT]
-Colour key brief: [P05_OUTPUT]
-Background description: [BACKGROUND_DESCRIPTION]
-
-Generate the asset documentation entry in the following structured format:
-
-ASSET ID: [AUTO — assign using format BG-[EPISODE]-[SCENE]-[LOCATION CODE]]
-ASSET NAME: [Full location name]
-EPISODE: [Episode number]
-SCENE(S): [Scene numbers this background appears in]
-CATEGORY: [Interior / Exterior / Transitional]
-TIME OF DAY: [Day / Night / Evening / Dawn]
-COMPLEXITY: [Low / Medium / High]
-DIMENSIONS: [To be confirmed by technical director]
-COLOUR KEY REFERENCE: [Primary palette — list hex codes from P05]
-STYLE VERSION: [Ligne claire v1 — or note any approved deviations]
-PROPS INCLUDED: [List all props present in background]
-PROPS EXCLUDED: [List any props referenced in brief but not included]
-CHARACTER INTERACTION ZONES: [Describe areas where characters will be placed]
-CONTINUITY DEPENDENCIES: [List any other backgrounds this must match]
-FILE STATUS: [DRAFT / APPROVED / REVISION REQUIRED]
-APPROVED BY: [To be completed by supervisor]
-DATE APPROVED: [To be completed by supervisor]
-NOTES: [Any flagged issues from P06 or P07 still outstanding]
-
-If any field cannot be completed from the information provided, 
-write "Awaiting confirmation — [specify what is needed and from whom]."
-```
-
-**Placeholders to fill:**
-
-| Placeholder | Source | Example |
-|-------------|--------|---------|
-| `[STYLE_GUIDE_RULES]` | Production style guide document | "Hergé ligne claire rules — see example below" |
-| `[BACKGROUND_DESCRIPTION]` | Artist's final background description after P07 corrections | Updated Street Market description post-revision |
----
-
-## 🏢 Intended Workflow or Task
-
-Step 5 of the production chain — runs once per background after all P07 issues are resolved and background is confirmed ready for documentation.
-
-- **Trigger:** P07 returns no HIGH or MEDIUM priority issues — background confirmed complete
-- **Actor:** Production asset manager or background supervisor
-- **Timing:** Immediately after P07 sign-off — before background enters quality review
-- **Next step:** Completed asset entry feeds into P09 (Quality Checklist Review)
-
-```
-P07 confirms no HIGH or MEDIUM issues outstanding
-      ↓
-[P08 RUNS — generates structured asset documentation entry]
-      ↓
-Supervisor reviews and completes approval fields
-      ↓
-Asset entry feeds into P09 quality checklist review
-```
-
----
-
-## ❗ Problem Being Solved
-Without structured documentation:
-- Assets are missed
-- Artists work inconsistently
-- Communication breaks between teams
-
-**Pain points addressed:**
-- Incomplete asset lists
-- Inconsistent documentation
-- Inefficient production setup
-
-## ⚡ Automation Potential
-
-**Level: High**
-
-| Dimension | Assessment |
-|-----------|------------|
-| Repetitiveness | Triggered once per location per episode |
-| Data availability | All inputs available from previous pipeline prompts P02–P07 |
-| Human judgment needed | Supervisor completes approval fields and confirms awaiting confirmation items |
-| Integration possibility | Structured output can feed directly into Shotgrid, Notion or production database with minimal reformatting |
-| Estimated time saving | ~85% — from 30–60 min to 5–10 min per background |
-
-**Human-in-the-loop role:** Supervisor reviews generated entry, completes APPROVED BY and DATE APPROVED fields, resolves any AWAITING CONFIRMATION items with relevant departments, and logs final entry into production tracking system.
-
----
-
-## ⚠️ Risks and Limitations
-
-| Risk | Level | Mitigation |
-|------|-------|------------|
-| Document props or details not actually present in background file | **High** | Grounding constraint: "Using ONLY the information provided" |
-| Continuity dependencies missed if not flagged in P05 or P06 outputs | **High** | Use as starting draft only |
-| Camera angle or shot type conflicts with storyboard or character blocking | **High** | Human refinement required |
-| Junior artist proceeds without art director review | **High** | Legal review required for any report involving injury, significant property damage, or potential litigation |
-
-**Overall risk rating: HIGH** — always requires Art director review and verification. Do not automate submission.
+Using the descripted information, generate a complete asset documentation entry for this background.
 
 ---
 
 ## 🔄 Version History
 
-### v1.0 — Initial draft
-**Date:** 31 March 2026 
-**Prompt:** Document this background asset. Background: [PASTE DESCRIPTION HERE]
-**Output:**  No props list, no continuity dependencies, no character interaction zones, no asset ID. 
-**Observed effect:** Documentation unusable as a production record — all fields had to be manually created from scratch. Faster to document without AI.
-**Lesson learned:**  Documentation prompts need a fixed field template to produce structured, production-ready output.
+### v1.0 
+**Prompt:** Document for this background asset.
+**Lesson learned:** Need a fixed field template to produce structured, production-ready output.
 
-### v1.1 — Added fixed field template + asset ID format ✅ Current
-**Date:** 31 March 2026 
+### v1.1 — 
 **Change:** Added all required documentation fields, asset ID format, props included/excluded split, continuity dependencies field
-**Output:** Correct field structure but no grounding constraint 
-**Observed effect:** Fabricated props logged into production database — required manual audit and correction before compositing began
 **Lesson learned:** Grounding constraint essential 
 
 ## 🔗 Related Prompts
-- **Previous in chain**: P07 — Missing Detail Identifier
-- **Next in chain:** P09 — Quality Checklist Review
-- **Parent section:** [03-production/README.md](README.md)
+[P09-quality-checklist-review]
