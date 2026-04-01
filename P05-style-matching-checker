@@ -4,22 +4,13 @@
 
 ---
 
-## 📌 Prompt Text 
-
-```
-You are a colour key artist at a 2D animation studio working on The Adventures of Tintin.
-
-Using the layout brief and location brief provided, generate a structured colour key brief that will guide the film.
-
-## 🔄 Version History
+## 📌 Prompt Text and History
 
 ### v1.0 
-**Prompt:** Generate a color and mood for the provide background.
+**Prompt:** Generate a color and mood for the provide marktet background.
 **Lesson learned:**  Need section structure and composition terminology constraints.
 
  ### v1.1 
 **Change:**Added layout artist role, sections, shot type and composition rule terminology.
 **Lesson learned:** Grounding constraint essential 
 
-## 🔗 Related Prompts
-[P06-style-matching-consistency-check] 
