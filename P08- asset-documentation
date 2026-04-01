@@ -3,23 +3,13 @@
 
 ---
 
-## 📌 Prompt Text 
-```
-You are a production asset manager at DeeDee animation studio working on The Adventures of Tintin.
-
-Using the descripted information, generate a complete asset documentation entry for this background.
-
----
-
-## 🔄 Version History
+## 📌 Prompt Text and history
 
 ### v1.0 
-**Prompt:** Document for this background asset.
+**Prompt:** Create document for this market background asset.
 **Lesson learned:** Need a fixed field template to produce structured, production-ready output.
 
-### v1.1 — 
+### v1.1 
 **Change:** Added all required documentation fields, asset ID format, props included/excluded split, continuity dependencies field
 **Lesson learned:** Grounding constraint essential 
 
-## 🔗 Related Prompts
-[P09-quality-checklist-review]
